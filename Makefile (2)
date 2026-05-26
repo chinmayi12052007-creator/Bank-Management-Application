@@ -1,0 +1,21 @@
+CXX      = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+TARGET   = bank_management
+SRCS     = main.cpp Account.cpp Bank.cpp
+OBJS     = $(SRCS:.cpp=.o)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(TARGET) $(OBJS) bank_data.dat
+
+.PHONY: all run clean
